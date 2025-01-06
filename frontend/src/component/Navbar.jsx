@@ -10,8 +10,8 @@ const Navbar = () => {
       <div className="max-w-[1260px] mx-auto flex justify-between px-4">
         <h1 className="text-red-500 font-bold text-2xl">Pinterest</h1>
         <ul className="flex gap-3 ">
-          <Link>Home</Link>
-          <Link>Create</Link>
+          <Link to={"/"}>Home</Link>
+          <Link to={"/Create"}>Create</Link>
           <div className="bg-gray-400 text-black rounded-full w-8 h-8 flex justify-center items-center ">
             {user.name ? user.name.slice(0, 1) : "p"}
           </div>

@@ -44,34 +44,34 @@ export const userLoginHandler = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(401).json({
-        massage: "all fields are required",
+      return res.status(400).json({
+        message: "all fields are required",
       });
     }
 
     let user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(402).json({
-        massage: "user doesn't exits with this email ",
+      return res.status(400).json({
+        message: "user doesn't exits with this email ",
       });
     }
     const status = await bcrypt.compare(password, user.password);
     if (!status) {
-      return res.status(402).json({
-        massage: "wrong email or password",
+      return res.status(400).json({
+        message: "wrong email or password",
       });
     }
     genratejwt(user._id, res);
     const sendinguser = await User.findOne({ email }).select("-password");
     res.status(200).json({
       user: sendinguser,
-      massage: "Logged in !",
+      message: "Logged in !",
     });
   } catch (error) {
     res.status(500).json({
       status: "fail",
-      massage: "something went wrong",
+      message: "something went wrong",
       erro: error.massage,
     });
   }

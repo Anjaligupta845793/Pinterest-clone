@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import FullLoader from "./component/FullLoader";
 import PinDetails from "./component/PinDetails";
+import Create from "./pages/Create";
 const App = () => {
   const { Loading, isAuth } = userData(); // Destructure `Loading` from context
 
@@ -17,6 +18,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={isAuth ? <Home /> : <Login />} />
+            <Route path="/Create" element={<Create />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/Pin/:id" element={<PinDetails />} />
