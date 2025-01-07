@@ -7,11 +7,11 @@ const Home = () => {
   const { pin, loading } = PinData();
 
   return (
-    <div className="">
+    <div>
       <Navbar />
-      <div className="max-w-[1260px] px-4 grid lg:grid-cols-5 md:grid-cols-4 grid-cols-1 gap-3 md:py-10 py-5 mx-auto ">
+      <div className="columns-1 sm:columns-2 md:columns-4 lg:columns-5 gap-4 mx-auto p-4 max-w-[1360px]">
         {pin.map((item, index) => (
-          <PinCard item={item} />
+          <PinCard key={index} item={item} />
         ))}
       </div>
     </div>

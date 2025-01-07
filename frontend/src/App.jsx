@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import FullLoader from "./component/FullLoader";
 import PinDetails from "./component/PinDetails";
 import Create from "./pages/Create";
+import Profile from "./pages/Profile";
 const App = () => {
   const { Loading, isAuth } = userData(); // Destructure `Loading` from context
 
@@ -18,10 +19,15 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={isAuth ? <Home /> : <Login />} />
-            <Route path="/Create" element={<Create />} />
+            <Route path="/Create" element={isAuth ? <Create /> : <Login />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
-            <Route path="/Pin/:id" element={<PinDetails />} />
+            <Route path="/Profile" element={isAuth ? <Profile /> : <Login />} />
+
+            <Route
+              path="/Pin/:id"
+              element={isAuth ? <PinDetails /> : <Login />}
+            />
           </Routes>
         </BrowserRouter>
       )}

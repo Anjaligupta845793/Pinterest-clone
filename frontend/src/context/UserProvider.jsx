@@ -57,14 +57,38 @@ export const UserProvider = ({ children }) => {
       setUser(data.user);
       setisAuth(true);
       setLoading(false);
+      return data.user;
     } catch (error) {
       console.log("error while fetching for profile", error);
       setLoading(false);
     }
   };
+
+  const Logout = async (navigate) => {
+    try {
+      const data = await axios.post("/api/user/Logout");
+      toast.success("Logout");
+      setisAuth(false);
+      setUser({});
+      location.reload();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong ");
+    }
+  };
   return (
     <userContext.Provider
-      value={{ LoginUser, btnLoading, RegisterUser, user, Loading, isAuth }}
+      value={{
+        LoginUser,
+        btnLoading,
+        RegisterUser,
+        user,
+        Loading,
+        isAuth,
+        MyProfile,
+        Logout,
+      }}
     >
       {children}
       <Toaster />

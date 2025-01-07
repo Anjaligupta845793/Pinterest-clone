@@ -156,6 +156,7 @@ export const commentOnPin = async (req, res) => {
 
     await pin.save();
     res.status(200).json({
+      pin,
       message: "comment added",
     });
   } catch (error) {
