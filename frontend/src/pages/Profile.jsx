@@ -10,7 +10,7 @@ import Navbar from "../component/Navbar";
 
 const Profile = () => {
   const { user, Logout } = userData();
-  const [pins, setpins] = useState([]);
+
   const { pin } = PinData();
   const navigate = useNavigate();
   let userPins;

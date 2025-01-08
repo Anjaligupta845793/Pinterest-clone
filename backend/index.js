@@ -4,6 +4,7 @@ import connectDb from "./database/db.js";
 import userrouter from "./routes/user.js";
 import PinRouter from "./routes/pin.js";
 import { v2 as cloudinary } from "cloudinary";
+import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -21,6 +22,13 @@ app.use(cookieParser());
 
 app.use("/api/user", userrouter);
 app.use("/api/pin", PinRouter);
+const __dirname = path.resolve();
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 connectDb();
 

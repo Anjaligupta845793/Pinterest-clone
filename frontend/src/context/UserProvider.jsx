@@ -10,6 +10,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const [user, setUser] = useState({});
+
   const [isAuth, setisAuth] = useState(false);
   const [btnLoading, setbtnLoading] = useState(false);
   const [Loading, setLoading] = useState(false);
@@ -77,6 +78,24 @@ export const UserProvider = ({ children }) => {
       toast.error("something went wrong ");
     }
   };
+
+  const UserProfile = async (id) => {
+    try {
+      const data = await axios.get(`/api/user/userprofile/${id}`);
+      console.log(data.data.user);
+      return data.data.user;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const followandUnfollowUser = async (id) => {
+    try {
+      await axios.post(`/api/user/followAndUnfollow/${id}`);
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <userContext.Provider
       value={{
@@ -88,6 +107,8 @@ export const UserProvider = ({ children }) => {
         isAuth,
         MyProfile,
         Logout,
+        followandUnfollowUser,
+        UserProfile,
       }}
     >
       {children}

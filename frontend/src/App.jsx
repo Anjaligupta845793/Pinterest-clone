@@ -8,8 +8,9 @@ import FullLoader from "./component/FullLoader";
 import PinDetails from "./component/PinDetails";
 import Create from "./pages/Create";
 import Profile from "./pages/Profile";
+import UserProfile from "./pages/UserProfile";
 const App = () => {
-  const { Loading, isAuth } = userData(); // Destructure `Loading` from context
+  const { Loading, isAuth, user } = userData(); // Destructure `Loading` from context
 
   return (
     <>
@@ -27,6 +28,10 @@ const App = () => {
             <Route
               path="/Pin/:id"
               element={isAuth ? <PinDetails /> : <Login />}
+            />
+            <Route
+              path="/UserProfile/:id"
+              element={isAuth ? <UserProfile logedinuser={user} /> : <Login />}
             />
           </Routes>
         </BrowserRouter>

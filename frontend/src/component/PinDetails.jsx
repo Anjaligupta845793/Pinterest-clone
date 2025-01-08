@@ -8,6 +8,7 @@ import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import { userData } from "../context/UserProvider";
 import Loader from "./Loader";
+import { Link } from "react-router-dom";
 
 const PinDetails = () => {
   const [Pin, setPin] = useState({});
@@ -103,7 +104,10 @@ const PinDetails = () => {
               {/* User Information */}
               <div className="flex items-center gap-4 my-5 border-b border-gray-300 pb-4">
                 <div className="w-10 h-10 bg-gray-400 text-white rounded-full flex items-center justify-center text-lg font-bold">
-                  {Pin.user.name.slice(0, 1)}
+                  <Link to={`/UserProfile/${Pin.user._id}`}>
+                    {" "}
+                    {Pin.user.name.slice(0, 1)}
+                  </Link>
                 </div>
                 <div>
                   <p className="font-semibold">{Pin.user.name}</p>
@@ -150,7 +154,9 @@ const PinDetails = () => {
                       >
                         <div className="flex gap-3">
                           <div className="w-9 h-9 bg-gray-400 text-white rounded-full flex items-center justify-center text-lg font-bold">
-                            {item.name.slice(0, 1)}
+                            <Link to={`/UserProfile/${item._id}`}>
+                              {item.name.slice(0, 1)}
+                            </Link>
                           </div>
                           <div>
                             <p className="font-semibold">{item.name}</p>
